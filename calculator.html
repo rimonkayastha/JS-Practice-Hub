@@ -13,26 +13,29 @@
         </style>
     </head>
     <body>
+        <div class="display">
+            0
+        </div>
         <div class="button-interface">
             <div class="first-row">
-                <button class="nine" onClick = "num += '9'">9</button>
-                <button class="eight" onClick = "num += '8'; alert(num)">8</button>
-                <button class="seven" onClick = "num+='7'">7</button>
+                <button class="nine" onClick = "num += '9'; showDisplay('9')">9</button>
+                <button class="eight" onClick = "num += '8'; showDisplay('8')">8</button>
+                <button class="seven" onClick = "num+='7'; showDisplay('7')">7</button>
             </div>
             <div class="second-row">
-                <button class="six" onClick = "num+='6'">6</button>
-                <button class="five" onClick = "num+='5'">5</button>
-                <button class="four" onClick = "num+='4'">4</button>
+                <button class="six" onClick = "num+='6'; showDisplay('6')">6</button>
+                <button class="five" onClick = "num+='5'; showDisplay('5')">5</button>
+                <button class="four" onClick = "num+='4'; showDisplay('4')">4</button>
             </div>
             <div class="third-row">
-                <button class="three" onClick = "num+='3'">3</button>
-                <button class="two" onClick = "num+='2'">2</button>
-                <button class="one" onClick = "num+='1'">1</button>
+                <button class="three" onClick = "num+='3'; showDisplay('3')">3</button>
+                <button class="two" onClick = "num+='2'; showDisplay('2')">2</button>
+                <button class="one" onClick = "num+='1'; showDisplay('1')">1</button>
             </div>
             <div class="calculation-row">
-                <button class="plus" onClick = "action[1]=action[0]; action[0]='plus'; resultChange()">+</button>
-                <button class="zero" onClick = "num+='0'">0</button>
-                <button class="minus" onClick = "action[1]=action[0]; action[0]='minus'; resultChange()">-</button>
+                <button class="plus" onClick = "action[1]=action[0]; action[0]='plus'; resultChange(); showDisplay('+')">+</button>
+                <button class="zero" onClick = "num+='0'; showDisplay('0')">0</button>
+                <button class="minus" onClick = "action[1]=action[0]; action[0]='minus'; resultChange(); showDisplay('-')">-</button>
             </div>
             <div class="final-row">
                 <button class="equal" onClick = "action[1]=action[0]; action[0]='equal'; resultChange(); ">=</button>
@@ -42,6 +45,19 @@
             let num = ''
             let result = 0
             let action = ['', '']
+            let display=''
+            let first_number = true
+            const showDisplay = (a) => {
+                if (action[0] === 'equal') {
+                    display = a
+                } else if (first_number) {
+                    display = a
+                    first_number = false
+                }else {
+                    display=display+a
+                }
+                document.querySelector('div').innerHTML = display;
+            }
             const resultChange = () => {
                 let number = Number(num)
                 switch (action[1]) {
@@ -55,8 +71,10 @@
                         result = number
                 }
                 if (action[0]==='equal') {
-                    alert(result)
+                    showDisplay(result)
                     result = 0
+                    action=['','']
+                    first_number=true
                 }
                 num = ''
             }
