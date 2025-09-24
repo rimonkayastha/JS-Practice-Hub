@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculator App</title>
+        <style>
+            .button-interface {
+                height: 500px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="button-interface">
+            <div class="first-row">
+                <button class="nine" onClick = "num += '9'">9</button>
+                <button class="eight" onClick = "num += '8'; alert(num)">8</button>
+                <button class="seven" onClick = "num+='7'">7</button>
+            </div>
+            <div class="second-row">
+                <button class="six" onClick = "num+='6'">6</button>
+                <button class="five" onClick = "num+='5'">5</button>
+                <button class="four" onClick = "num+='4'">4</button>
+            </div>
+            <div class="third-row">
+                <button class="three" onClick = "num+='3'">3</button>
+                <button class="two" onClick = "num+='2'">2</button>
+                <button class="one" onClick = "num+='1'">1</button>
+            </div>
+            <div class="calculation-row">
+                <button class="plus" onClick = "action[1]=action[0]; action[0]='plus'; resultChange()">+</button>
+                <button class="zero" onClick = "num+='0'">0</button>
+                <button class="minus" onClick = "action[1]=action[0]; action[0]='minus'; resultChange()">-</button>
+            </div>
+            <div class="final-row">
+                <button class="equal" onClick = "action[1]=action[0]; action[0]='equal'; resultChange(); ">=</button>
+            </div>
+        </div>
+        <script>
+            let num = ''
+            let result = 0
+            let action = ['', '']
+            const resultChange = () => {
+                let number = Number(num)
+                switch (action[1]) {
+                    case 'plus':
+                        result = result+number
+                        break;
+                    case 'minus':
+                        result = result-number
+                        break;
+                    default:
+                        result = number
+                }
+                if (action[0]==='equal') {
+                    alert(result)
+                    result = 0
+                }
+                num = ''
+            }
+        </script>
+    </body>
+</html>

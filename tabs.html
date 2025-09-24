@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tabs UI</title>
+        <style>
+            .tab-switch-bar {
+                display: flex;
+                background-color: #d3e0f5;
+                justify-content: space-around;
+            }
+            .tab-button {
+                border: None;
+                color: None;
+                background: None;
+                font-weight: bold;
+                width: 100%;
+            }
+            .tab-button:hover {
+                cursor: pointer;
+                opacity: 80%;
+            }
+            .tab-1 {
+                background-color: #adc9f5;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="tab-switch-bar-container">
+            <div class="tab-switch-bar">
+                <button class="tab-button tab-1" onClick="increaseCounter()">
+                    Tab 1
+                </button>
+                <button class="tab-button tab-2">
+                    Tab 2
+                </button>
+                <button class="tab-button tab-3">
+                    Tab 3
+                </button>
+                <button class="tab-button tab-4">
+                    Tab 4
+                </button>
+            </div>
+        </div>
+        <div class="tab-1">
+
+        </div>
+        <div class="tab-2">
+            
+        </div>
+        <div class="tab-3">
+            
+        </div>
+        <div class="tab-4">
+            
+        </div>
+        <script>
+            let demo = Number(localStorage.getItem('demo'))
+            function increaseCounter() {
+                demo = demo+1
+                localStorage.setItem('demo', `${demo}`)
+                alert(localStorage.getItem('demo'))
+            }
+        </script>
+    </body>
+</html>
